@@ -57,7 +57,7 @@ sed -i.bak -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
 s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"https://sync.novascan.io,https://sync.supernova.zenon.red\"| ; \
 s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
 s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"| ; \
-s|^(seeds[[:space:]]+=[[:space:]]+).*$|\1\"2a3cd2768826aed5792593a2d6c8f6b28435a2a7@172.245.233.171:26656,ced855d1514b84adabe8590acd474487710ca259@167.235.79.123:26656,669d3f450f45906296e3c17c3f4fc52f4e07f8c3@49.12.72.145:26656,f5707786778283258b37b5154a520897ab4b75b5@116.203.187.234:26656\"| ; \
+s|^(seeds[[:space:]]+=[[:space:]]+).*$|\1\"ced855d1514b84adabe8590acd474487710ca259@167.235.79.123:26656,669d3f450f45906296e3c17c3f4fc52f4e07f8c3@49.12.72.145:26656,f5707786778283258b37b5154a520897ab4b75b5@116.203.187.234:26656\"| ; \
 s|^(addr_book_strict[[:space:]]+=[[:space:]]+).*$|\1false|" ~/.supernova/config/config.toml
 
 # Update config.toml for RocksDB settings
