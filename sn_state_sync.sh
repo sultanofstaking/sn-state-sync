@@ -70,7 +70,15 @@ echo "Updating app.toml configurations..."
 sed -i.bak -E "s|^(pruning[[:space:]]+=[[:space:]]+).*$|\1\"default\"| ; \
 s|^(minimum-gas-prices[[:space:]]+=[[:space:]]+).*$|\1\"0stake\"| ; \
 s|^(app-db-backend[[:space:]]+=[[:space:]]+).*$|\1\"rocksdb\"|" ~/.supernova/config/app.toml
-sed -i.bak -E "s|^\[json-rpc\].*$|\[json-rpc\]\n# Enable defines if the gRPC server should be enabled.\nenable = false\n# Address defines the EVM RPC HTTP server address to bind to.\naddress = \"0.0.0.0:8545\"\n# Address defines the EVM WebSocket server address to bind to.\nws-address = \"0.0.0.0:8546\"|" ~/.supernova/config/app.toml
+
+# Check if 'enable' is already defined, then update the json-rpc section
+if ! grep -q 'enable' ~/.supernova/config/app.toml; then
+    sed -i.bak -E "/^\[json-rpc\]/a\
+    # Enable defines if the gRPC server should be enabled.\n\
+    enable = false" ~/.supernova/config/app.toml
+fi
+
+sed -i.bak -E "s|^\[json-rpc\].*$|\[json-rpc\]\n# Address defines the EVM RPC HTTP server address to bind to.\naddress = \"0.0.0.0:8545\"\n# Address defines the EVM WebSocket server address to bind to.\nws-address = \"0.0.0.0:8546\"|" ~/.supernova/config/app.toml
 
 # Step 7: Create systemd service file
 echo "Creating systemd service file..."
